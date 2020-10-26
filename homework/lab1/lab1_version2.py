@@ -15,7 +15,7 @@ def process_train():
     global train_feature
     global w
     # read train.txt
-    train = np.loadtxt('train.txt',delimiter=',')
+    train = np.loadtxt('./data/train.txt',delimiter=',')
     # train_label get label 1 or -1
     train_label = train[:,-1]
     # train_feature get features and insert a column of 1 to first column
@@ -44,7 +44,7 @@ def process_test():
     global test_label
     test_label=[]
     # read test.txt 
-    test = np.loadtxt('test.txt',delimiter=',')
+    test = np.loadtxt('./data/test.txt',delimiter=',')
     test_feature = test
     # test_feature get (x1, x2)
     test_feature = np.insert(test_feature,0,np.ones(len(test_feature)),axis=1)

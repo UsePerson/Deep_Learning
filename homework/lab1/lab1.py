@@ -9,7 +9,7 @@ def sign(f):
         return 0
     else:
         return -1
-with open("train.txt","r") as train_file:   # read train.txt, first column is x1 and second cloume is x2
+with open("./data/train.txt","r") as train_file:   # read train.txt, first column is x1 and second cloume is x2
     train_x1,train_x2,label = [],[],[]       
     train_positive_x1,train_positive_x2 = [],[]    
     train_negative_x1,train_negative_x2 = [],[]
@@ -44,7 +44,7 @@ with open("train.txt","r") as train_file:   # read train.txt, first column is x1
             except:
                 pass
     print("{} + {}*x1 + {}*x2 = 0".format(w0,w1,w2)) # print w0*x1 + w1*x1 + w2*x2 = 0 
-    with open("test.txt","r") as test_file: # read test.txt
+    with open("./data/test.txt","r") as test_file: # read test.txt
         # calculate the test
         for line in test_file:  
             try:
