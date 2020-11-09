@@ -12,12 +12,12 @@ def Sigmoid(w,train_feature):
  
 def Gradient_Descent(w, train_feature, train_label, lr):
     return w + lr * ( train_label - Sigmoid(w,train_feature) ) * train_feature
+# i find a problem that ln divide by zero
+# def Cross_Entropy(train_label, train_feature, w):
+#     a = Sigmoid(w,train_feature)
+#     return -( train_label * np.log(a) + (1 - train_label) * np.log(1 - a)) 
 
-def Draw_and_Print(w, train_feature, Epoch,test_feature,test_label):
-    # print  w0x0 + w1x1 + w2x2 
-    print("%.3f + %.3f * x1 + %.3f * x2 = 0" %(w[0],w[1],w[2])) 
-    # print Epoch
-    print("Epoch : ",Epoch)
+def Draw(w, train_feature, test_feature, test_label):
     x = np.linspace(0,180) 
     # y is dependent variable
     y =  -( (w[1] * x + w[0]) /(w[2]) ) 
@@ -28,6 +28,7 @@ def Draw_and_Print(w, train_feature, Epoch,test_feature,test_label):
     plt.scatter(train_feature[6:,1], train_feature[6:,2], label= "Training Data = 0", color= "red", marker= "+", s=30)
     # show test data 
     test = np.hstack((test_feature[:,1:],test_label[:,np.newaxis])) 
+    print(test[:,:])
     test_positive = test[test[:,2].astype(int)==1,:]
     test_negative = test[test[:,2].astype(int)==0,:]
     plt.scatter(test_positive[:,0], test_positive[:,1], label= "Testing Data = 1", color= "green", marker= "*", s=30) 
@@ -41,27 +42,31 @@ def Draw_and_Print(w, train_feature, Epoch,test_feature,test_label):
 
 def main():
     train_feature = np.array([[1,170,80],
-                             [1,165,55],
-                             [1,150,45],
-                             [1,180,70],
-                             [1,175,65],
-                             [1,160,60],
-                             [1,90,15],
-                             [1,130,30],
-                             [1,120,40],
-                             [1,110,35]])
+                              [1,165,55],
+                              [1,150,45],
+                              [1,180,70],
+                              [1,175,65],
+                              [1,160,60],
+                              [1,90,15],
+                              [1,130,30],
+                              [1,120,40],
+                              [1,110,35]])
     train_label = np.array([1,1,1,1,1,1,0,0,0,0])
     test_feature = np.array([[1,170,60],
-                             [1,85,15],
-                             [1,145,45]])
+                              [1,85,15],
+                              [1,145,45]])
     test_label = np.array([])
     w = np.array([0.0, 0.0, 0.0])    
     lr = 0.01 
     Epoch =1000001
+    print("Max Epoch is", Epoch-1)
     # train weight
     for i in range(Epoch):
         for pos in range(10):
             w = Gradient_Descent(w, train_feature[pos], train_label[pos], lr)
+    # print  w0x0 + w1x1 + w2x2 
+    print("%.3f + %.3f * x1 + %.3f * x2 = 0" %(w[0],w[1],w[2])) 
+
     # calculate the test data
     for pos in range(3):    
         if( Sigmoid(w,test_feature[pos]) >= 0.5):
@@ -69,6 +74,6 @@ def main():
         else:
             test_label = np.append(test_label,0)
 
-    Draw_and_Print(w, train_feature, Epoch,test_feature,test_label)
+    Draw(w, train_feature, test_feature, test_label)
 
 main()
