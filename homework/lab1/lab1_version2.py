@@ -33,7 +33,7 @@ def pla():
         cnt = 0
         
         for i in range(len(train_feature)):
-            if( sign( int(np.inner(w , train_feature[i])) )!= train_label[i]):
+            if( sign( int(np.dot(w , train_feature[i])) )!= train_label[i]):
                 w += train_feature[i] * train_label[i]
             else:
                 cnt+=1
