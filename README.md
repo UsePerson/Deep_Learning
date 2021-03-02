@@ -1,9 +1,8 @@
 # Deep_Learning
-## homework
-* lab1 -- Linear Classification
+* Linear Classification
     - Perceptron Learning Algorithm(PLA)
-* lab2 -- Logistic Regression 
+* Logistic Regression 
     - Stochastic Gradient Descent Algorithm
-* lab3 -- Backpropagation
+* Backpropagation
     - Activity function : Sigmoid function
     - Error function : Cross Entropy    

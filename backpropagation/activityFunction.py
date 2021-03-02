@@ -5,16 +5,7 @@ class ActivationFunction:
     def __init__(self, types='Sigmoid'):
         
         self.func = self.Sigmoid
-        self.dfunc = self.dSigmoid
-        
-        if types == 'Sigmoid':
-            
-            self.func = self.Sigmoid
-            self.dfunc = self.dSigmoid
-            
-        elif types == 'Sign':
-            
-            pass
+        self.dfunc = self.dSigmoid               
         
     def Sigmoid(self, n):
 
