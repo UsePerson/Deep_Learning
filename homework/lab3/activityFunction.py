@@ -16,20 +16,13 @@ class ActivationFunction:
             
             pass
         
-        
-        
-        
     def Sigmoid(self, n):
-        for i in range(x.shape[0]):
-            if x[i]<-709.0:
-                x[i]=-100.0
-            elif x[i]>100.0:
-                x[i]=100.0
-        return 1 / (1 + np.exp(-n))
+
+        return 1.0 / (1.0 + np.exp(-n))
     
     def dSigmoid(self, output):
         
-        return np.multiply(output, (1 - output))
+        return output * (1 - output)
     
 if __name__ == '__main__':
     

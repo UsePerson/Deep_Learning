@@ -19,7 +19,7 @@ class ErrorFunction:
     
     def dcross_entropy(self, ans, output):
         
-        return (output - ans) / np.multiply(output, (1 - output))
+        return (output - ans) / ( output * (1 - output) )
     
     def MSE(self, ans, output):
         
