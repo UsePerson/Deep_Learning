@@ -83,16 +83,15 @@ class Layer_state:
     
 class nn:
     
-    def __init__(self, af='Sigmoid', ef='cross_entropy', lr=0.5 ):
+    def __init__(self, ef='cross_entropy', lr=0.5 ):
         
-        self.af = AF(types=af)
         self.ef = EF(types=ef)
         self.lr = lr
         self.layer_state = np.array([])
     
-    def add_layer(self, input_size, neuron_size ):
+    def add_layer(self, input_size, neuron_size, af='Sigmoid' ):
         
-        state = Layer_state(input_size, neuron_size, self.af, self.ef, self.lr)
+        state = Layer_state(input_size, neuron_size, af, self.ef, self.lr)
         self.layer_state = np.append(self.layer_state, state) 
         
     def feedforward(self, inputs):
@@ -265,13 +264,6 @@ class nn:
                 
                 mini_loss = train_loss_p / train_size
                 mini_loss_epoch = i
-            
-            if i % 100 == 0 :
-                print("i :", i)
-                print("train loss : ", train_loss_p / train_size )
-                print()
-                print("validation loss : ", validation_loss_p / validation_size )
-                print("--------------------------")
             
             if ( (train_loss_p / train_size) < 0.05) or ( (validation_loss_p / validation_size) < 0.05 ) :
                 print("i :", i)
